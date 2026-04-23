@@ -35,8 +35,4 @@ public class Karyawan {
     public String toString() {
         return "ID: " + id + ", Nama: " + nama + ", Posisi: " + posisi + ", Gaji: Rp" + gaji;
     }
-}        System.out.println("Nama: " + nama);
-        System.out.println("NIP: " + nip);
-        System.out.println("Gaji: Rp" + gaji);
-    }
 }
