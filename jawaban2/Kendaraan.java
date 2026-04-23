@@ -1,47 +1,51 @@
+package jawaban2;
 public class Kendaraan {
-    protected String merek;
-    protected String model;
-    protected int tahun;
-    protected double harga;
-    
+    private String jenis;
+    private int durasi; // dalam jam
+
     // Constructor
-    public Kendaraan(String merek, String model, int tahun, double harga) {
-        this.merek = merek;
-        this.model = model;
-        this.tahun = tahun;
-        this.harga = harga;
+    public Kendaraan(String jenis) {
+        this.jenis = jenis;
     }
-    
-    // Getter
-    public String getMerek() {
-        return merek;
+
+    // Overloading method hitungBiaya dengan input manual durasi
+    public double hitungBiaya(int durasi) {
+        this.durasi = durasi;
+        return hitungBiaya();
     }
-    
-    public String getModel() {
-        return model;
+
+    // Overloading method hitungBiaya dengan jam masuk dan keluar
+    public double hitungBiaya(int jamMasuk, int jamKeluar) {
+        this.durasi = jamKeluar - jamMasuk;
+        if (this.durasi < 0) this.durasi += 24; // lewat tengah malam
+        return hitungBiaya();
     }
-    
-    public int getTahun() {
-        return tahun;
+
+    // Method private untuk menghitung biaya
+    private double hitungBiaya() {
+        int tarifPerJam;
+        switch (jenis.toLowerCase()) {
+            case "motor": tarifPerJam = 2000; break;
+            case "mobil": tarifPerJam = 5000; break;
+            case "truk": tarifPerJam = 10000; break;
+            default: tarifPerJam = 0;
+        }
+
+        double total = durasi * tarifPerJam;
+
+        if (durasi > 5) {
+            total *= 0.9; // diskon 10%
+        }
+
+        return total;
     }
-    
-    public double getHarga() {
-        return harga;
+
+    public void tampilkanRingkasan() {
+        double biaya = hitungBiaya();
+        System.out.println("Jenis: " + jenis + ", Durasi: " + durasi + " jam, Total: Rp" + biaya);
     }
-    
-    // Method
-    public void tampilData() {
-        System.out.println("Merek: " + merek);
-        System.out.println("Model: " + model);
-        System.out.println("Tahun: " + tahun);
-        System.out.println("Harga: Rp" + harga);
-    }
-    
-    public void nyalakan() {
-        System.out.println("Kendaraan dinyalakan...");
-    }
-    
-    public void matikan() {
-        System.out.println("Kendaraan dimatikan...");
+
+    public double getBiaya() {
+        return hitungBiaya();
     }
 }
