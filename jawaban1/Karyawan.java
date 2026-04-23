@@ -1,40 +1,41 @@
+package jawaban1;
 public class Karyawan {
+    private String id;
     private String nama;
-    private String nip;
+    private String posisi;
     private double gaji;
-    
+
     // Constructor
-    public Karyawan(String nama, String nip, double gaji) {
+    public Karyawan(String id, String nama, String posisi, double gaji) {
+        this.id = id;
         this.nama = nama;
-        this.nip = nip;
-        this.gaji = gaji;
+        this.posisi = posisi;
+        setGaji(gaji);
     }
-    
-    // Getter
-    public String getNama() {
-        return nama;
+
+    // Getter dan Setter
+    public String getId() { return id; }
+    public String getNama() { return nama; }
+    public String getPosisi() { return posisi; }
+
+    public void setPosisi(String posisi) {
+        this.posisi = posisi;
     }
-    
-    public String getNip() {
-        return nip;
-    }
-    
-    public double getGaji() {
-        return gaji;
-    }
-    
-    // Setter
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-    
+
+    public double getGaji() { return gaji; }
+
     public void setGaji(double gaji) {
+        if (gaji < 0) {
+            throw new IllegalArgumentException("Gaji tidak boleh negatif!");
+        }
         this.gaji = gaji;
     }
-    
-    // Method
-    public void tampilData() {
-        System.out.println("Nama: " + nama);
+
+    @Override
+    public String toString() {
+        return "ID: " + id + ", Nama: " + nama + ", Posisi: " + posisi + ", Gaji: Rp" + gaji;
+    }
+}        System.out.println("Nama: " + nama);
         System.out.println("NIP: " + nip);
         System.out.println("Gaji: Rp" + gaji);
     }
